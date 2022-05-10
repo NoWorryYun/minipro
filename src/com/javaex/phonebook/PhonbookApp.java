@@ -79,7 +79,7 @@ public class PhonbookApp {
 				p.setCompany(sc.nextLine());
 
 				person.add(p);
-				Writer fw = new FileWriter("C:\\javaStudy\\file\\PhoneDB.txt");
+				Writer fw = new FileWriter("./PhoneDB.txt");
 				BufferedWriter bw = new BufferedWriter(fw);
 
 				for (Person s : person) {
@@ -103,18 +103,40 @@ public class PhonbookApp {
 					p.setCompany(pArray[2]);
 					person.add(p);
 				}
-
-				Writer wr = new FileWriter("C:\\javaStudy\\file\\PhoneDB.txt");
-				BufferedWriter bw = new BufferedWriter(wr);
-
 				System.out.println("<3.삭제>");
 				System.out.print(">번호 : ");
-				person.remove(sc.nextInt() - 1);
+				person.remove((sc.nextInt() - 1));
+
+				Writer wr = new FileWriter("./PhoneDB.txt");
+				BufferedWriter bw = new BufferedWriter(wr);
+				for (Person s : person) {
+					String saveStr = s.getName() + "," + s.getHp() + "," + s.getCompany();
+					bw.write(saveStr);
+					bw.newLine();
+				}
+
 				System.out.println("삭제되었습니다.");
 
 				bw.close();
 			} else if (num == 4) {
-				
+				System.out.println("<4.검색>");
+				String str = br.readLine();
+				char ch = str.charAt(0);
+				System.out.print("이름: ");
+				String name = sc.nextLine();
+				for (Person p : person) {
+					String kkk = p.getName();
+
+					char c1 = kkk.charAt(0);
+					char c2 = kkk.charAt(1);
+					char c3 = kkk.charAt(2);
+
+					if (ch == c1 || ch == c2 || ch == c3) {
+						p.showInfo();
+					}
+
+				}
+
 			} else {
 				System.out.println("[다시 입력해 주세요]");
 			}
