@@ -118,6 +118,7 @@ public class PhonbookApp {
 					char search03 = pName[2].charAt(0);
 					
 					if (searcher == search01 || searcher == search02 || searcher == search03) {
+						System.out.print((i+1) + ".   ");
 						person.get(i).showInfo();
 					}
 				}
